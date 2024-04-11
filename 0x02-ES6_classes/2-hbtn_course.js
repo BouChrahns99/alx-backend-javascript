@@ -1,76 +1,71 @@
-// A Course, Getters, and Setters
-// Implement a class named HolbertonCourse:
+/**
+ * Represents a Holberton Course.
+ */
+export default class HolbertonCourse {
+  /**
+   * Creates a new @see {@link HolbertonCourse}.
+   *
+   * @param {String} name - The name of the course.
+   * @param {Number} length - How long the course is (in months).
+   * @param {String[]} students - The names of students in the course.
+   */
+  constructor(name, length, students) {
+    this.name = name;
+    this.length = length;
+    this.students = students;
+  }
 
-// Constructor attributes:
-// name (String)
-// length (Number)
-// students (array of Strings)
-// Constructor attributes:
-// Make sure to verify the type of attributes during object creation
-// Each attribute must be stored in an “underscore” attribute version (ex: name is stored in _name)
-// Implement a getter and setter for each attribute.
+  /**
+   * Gets the name of this course.
+   */
+  get name() {
+    return this._name;
+  }
 
-class HolbertonCourse{
-    constructor(name, length,students) {
-
-        // you passed in empty contructor
-        this._name = null;
-        this._length = null;
-        this._students = null;
-
-
-        this.name = name;
-        this.length = length;
-        this.students = students;
-        
+  /**
+   * Sets the name of this course.
+   */
+  set name(value) {
+    if (typeof value !== 'string') {
+      throw new TypeError('Name must be a string');
     }
+    this._name = value;
+  }
 
-    // getter and setter operation here
-     
-    // getter name
-    get name(){
-        return this._name;
+  /**
+   * Gets the length of this course (in months).
+   */
+  get length() {
+    return this._length;
+  }
+
+  /**
+   * Sets the length of this course (in months).
+   */
+  set length(value) {
+    if (typeof value !== 'number') {
+      throw new TypeError('Length must be a number');
     }
-    
-    // setter name
-    set name(val){
-        if(typeof val === 'string'){
-            this._name = val;
-        }else{
-            throw new Error('Value must be a string');
-        }
+    this._length = value;
+  }
+
+  /**
+   * Gets the names of students in this course.
+   */
+  get students() {
+    return this._students;
+  }
+
+  /**
+   * Sets the names of students in this course.
+   */
+  set students(value) {
+    if (!(value instanceof Array)) {
+      throw new TypeError('Students must be an array of strings');
     }
-
-    //geter length
-
-    get length(){
-        return this._length;
+    if (!value.every((student) => typeof student === 'string')) {
+      throw new TypeError('Students must be an array of strings');
     }
-
-    // setter length
-
-    set length(val){
-        if(typeof val === 'number'){
-            this._length = val;
-        }else{
-            throw new Error('The length must be a number');
-        }
-
-    }
-
-    // getter students
-
-    get students(){
-        return this._students;
-    }
-
-    set students(val){
-        if(Array.isArray(val) && val.every((student) => typeof student === 'string')){
-            this._students = val;
-        }else{
-            throw new Error('Student must be an array of string');
-        }
-    }
+    this._students = value;
+  }
 }
-
-export {HolbertonCourse};
